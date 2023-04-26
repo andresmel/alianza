@@ -1,0 +1,9 @@
+{
+  "base":{
+    "baseUrl":"https://api.disneyapi.dev"
+  },
+  "endPoints":{
+    "gettAll":"/character",
+    "getOne":"/character/"
+  }
+}
