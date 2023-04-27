@@ -173,9 +173,10 @@ a{
   position: relative;
   margin:auto;
   margin-top: 10px;
-  width: 90%;
+  width: auto;
   display: flex;
   background: white;
+text-align: center;;
 }
 
 .dashboard .contenedor-character ul li{
@@ -186,14 +187,13 @@ a{
   position: relative;
   width: 300px;
   height: auto;
-  margin:15px;
   border-radius: 18px;
-box-shadow: 0 0 12px 1px gray;
-  padding: 0px;
+  box-shadow: 0 0 12px 1px gray;
+  padding: 30px;
   background: white;
   font-size: 13px;
-  padding-bottom: 30px;
   cursor: pointer !important;
+  margin: 10px;;
 }
 
 .dashboard .contenedor-character .character .cabecera-name-character{
