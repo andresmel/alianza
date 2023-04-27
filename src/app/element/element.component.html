@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="element">
+
+
+<div class="contenedor-element">
+ <div class="title-contenedor">
+    <h1>{{listOneCharacter.name}}</h1>
+ </div>
+ <div class="contenedor-btn">
+  <button class="btn btn-secondary" (click)="goBack()">Regresar a Imagenes</button>
+</div>
+
+
+
+ <div class="contenedor-element-info">
+  <img class="element-img" src="{{listOneCharacter.imageUrl}}"  />
+
+ <div class="element-info">
+
+    <table class="table-info">
+      <tr>
+        <td><strong>Nombre:</strong></td>
+        <td>{{listOneCharacter.name}}</td>
+      </tr>
+      <tr>
+        <td><strong>Fecha:</strong></td>
+        <td>{{listOneCharacter.createdAt}}</td>
+      </tr>
+      <tr>
+        <td><strong>Films:</strong></td>
+        <td>{{listOneCharacter.films}}</td>
+      </tr>
+      <tr>
+        <td><strong>Viedo Games:</strong></td>
+        <td>{{listOneCharacter.videoGames}}</td>
+      </tr>
+      <tr>
+        <td><strong>Short Films Games:</strong></td>
+        <td>{{listOneCharacter.shortFilms}}</td>
+      </tr>
+      <tr>
+        <td><strong>Enemies:</strong></td>
+        <td>{{listOneCharacter.enemies}}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+ </div>
+ </div>
+</div>
+</div>

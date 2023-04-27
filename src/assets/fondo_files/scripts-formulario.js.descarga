@@ -1,0 +1,151 @@
+$(window).resize((function () {
+    getWidthSelect01()
+}));
+const formData = {
+    nombreEmpresa: "",
+    nit: "",
+    telefono: "",
+    nombre: "",
+    correo: "",
+    cargo: "",
+    cargoOtro: "",
+    origenUTM: "",
+    urlInicial: "",
+    urlHistorial: "",
+    urlOrigenUTM: "",
+    getutmsource: "",
+    getutmmedium: "",
+    getutmcontent: "",
+    getutmterm: "",
+    getutmcampaign: "",
+    getutmreferrer: "",
+    reCaptchaResponse: ""
+},
+    nombreEmpresa = document.querySelector("#nombre-empresa"),
+    nit = document.querySelector("#nit"),
+    telefono = document.querySelector("#telefono"),
+    nombre = document.querySelector("#nombre"),
+    correo = document.querySelector("#correo"),
+    cargo = document.querySelector("#cargo"),
+    cargoOtro = document.querySelector("#cargo-otro"),
+    origenUTM = document.querySelector("#origenUTM"),
+    urlInicial = document.querySelector("#urlInicial"),
+    urlHistorial = document.querySelector("#urlHistorial"),
+    getutmsource = document.querySelector("#getutmsource"),
+    getutmmedium = document.querySelector("#getutmmedium"),
+    getutmcontent = document.querySelector("#getutmcontent"),
+    getutmterm = document.querySelector("#getutmterm"),
+    getutmcampaign = document.querySelector("#getutmcampaign"),
+    getutmreferrer = document.querySelector("#getutmreferrer"),
+    formularioContacto = document.querySelector("#formulario-contacto"),
+    submitBtn = document.querySelector("#submit-form"),
+    asignarFormData = (o, e) => {
+        o.addEventListener("input", r => {
+            const a = r.target.value;
+            if ("nombreEmpresa" === e) formData.nombreEmpresa = a;
+            else if ("nit" === e) formData.nit = a;
+            else if ("telefono" === e) formData.telefono = a;
+            else if ("nombre" === e) formData.nombre = a;
+            else if ("correo" === e) formData.correo = a;
+            else if ("cargoOtro" === e) formData.cargoOtro = o.value;
+            else if ("origenUTM" === e) formData.origenUTM = a;
+            else if ("urlInicial" === e) formData.urlInicial = a;
+            else if ("urlHistorial" === e) formData.urlHistorial = a;
+            else {
+                if ("urlOrigenUTM" !== e) return;
+                formData.urlOrigenUTM = a
+            }
+        });
+        (() => {
+            if ("cargo" === e) formData.cargo = o.value;
+            else if ("origenUTM" === e) formData.origenUTM = o.value;
+            else if ("urlInicial" === e) formData.urlInicial = o.value;
+            else if ("urlHistorial" === e) formData.urlHistorial = o.value;
+            else if ("urlOrigenUTM" === e) formData.urlOrigenUTM = o.value;
+            else {
+                if ("reCaptchaResponse" !== e) return;
+                formData.reCaptchaResponse = o.value
+            }
+        })()
+    },
+    getWidthSelect01 = () => {
+        const o = $("#cargo").outerWidth();
+        $(window).width() < 992 ? $("#collapseSelectCargo").css("width", "100%") : $("#collapseSelectCargo").css("width", o + "px")
+    },
+    inputCargoWidth = () => {
+        $("#collapseSelectCargo").on("show.bs.collapse", (function () {
+            const o = $("#cargo").outerWidth();
+            $("#collapseSelectCargo").css("width", o + "px"), $("#select-01").removeClass("arrow-down"), $("#select-01").addClass("arrow-up")
+        })), $("#collapseSelectCargo").on("hide.bs.collapse", (function () {
+            $("#select-01").removeClass("arrow-up"), $("#select-01").addClass("arrow-down")
+        }))
+    };
+$("#collapseSelectCargo").on("show.bs.collapse", (function () {
+    const o = $("#cargo").outerWidth();
+    $("#collapseSelectCargo").css("width", o + "px"), $("#select-01").removeClass("arrow-down"), $("#select-01").addClass("arrow-up")
+})), $("#collapseSelectCargo").on("hide.bs.collapse", (function () {
+    $("#select-01").removeClass("arrow-up"), $("#select-01").addClass("arrow-down")
+}));
+const selectCargo = () => {
+    $(".event-cargo").click((function (o) {
+        let e = $(o.target).data("click");
+        "Otro" === e ? ($("#input-cargo-otro").removeClass("d-none"), $("#cargo-otro").removeClass("d-none"), $("#cargo-otro").focus(), $("#collapseSelectCargo").collapse("hide"), $("#cargo").attr("value", e), asignarFormData(cargo, "cargo"), asignarFormData(cargoOtro, "cargoOtro")) : ($("#input-cargo-otro").addClass("d-none"), $("#collapseSelectCargo").collapse("hide"), $("#cargo").attr("value", e), asignarFormData(cargo, "cargo"), formData.cargoOtro = "")
+    }))
+};
+$(".event-cargo").click((function (o) {
+    let e = $(o.target).data("click");
+    "Otro" === e ? ($("#input-cargo-otro").removeClass("d-none"), $("#cargo-otro").removeClass("d-none"), $("#cargo-otro").focus(), $("#collapseSelectCargo").collapse("hide"), $("#cargo").attr("value", e), asignarFormData(cargo, "cargo"), asignarFormData(cargoOtro, "cargoOtro")) : ($("#input-cargo-otro").addClass("d-none"), $("#collapseSelectCargo").collapse("hide"), $("#cargo").attr("value", e), asignarFormData(cargo, "cargo"), formData.cargoOtro = "")
+})), asignarFormData(nombreEmpresa, "nombreEmpresa"), asignarFormData(nit, "nit"), asignarFormData(telefono, "telefono"), asignarFormData(nombre, "nombre"), asignarFormData(correo, "correo"), asignarFormData(origenUTM, "origenUTM"), asignarFormData(urlInicial, "urlInicial"), asignarFormData(urlHistorial, "urlHistorial"), asignarFormData(urlOrigenUTM, "urlOrigenUTM");
+const soloNumerosNit = o => {
+    let e = (o = o || window.event).which ? o.which : o.keyCode;
+    return !(e < 45 || e > 45) || !(e < 48 || e > 57)
+},
+    soloNumeros = o => {
+        let e = (o = o || window.event).which ? o.which : o.keyCode;
+        return !(e > 31 && (e < 48 || e > 57))
+    },
+    validatePathResponse = () => {
+        sendForm("/includes/tracking/process-form.php", "/mensaje-enviado.php")
+    },
+    validateRecaptcha = () => {
+        const o = document.querySelector("#msgSubmitRecaptcha");
+        return grecaptcha && grecaptcha.getResponse(1).length > 0 ? (o.textContent = "", formData.reCaptchaResponse = grecaptcha.getResponse(1), o.classList.remove("input-error"), !0) : (o.textContent = "Confirma que no eres un robot", o.classList.add("input-error"), !1)
+    };
+$("#submit-form").mouseover((function () {
+    validateRecaptcha()
+}));
+const pristineForm = () => {
+    const o = new Pristine(formularioContacto);
+    formularioContacto.addEventListener("submit", e => {
+        e.preventDefault();
+        if (!o.validate() || !validateRecaptcha()) return !1;
+        sendForm("/includes/tracking/process-form.php", "/mensaje-enviado.php")
+    })
+};
+pristineForm();
+const sendForm = (o, e) => {
+    formData.getutmsource = getutmsource.value ?? '';
+    console.log(getutmsource);
+    formData.getutmmedium = getutmmedium.value ?? '';
+    console.log(getutmmedium);
+    formData.getutmcontent = getutmcontent.value ?? '';
+    console.log(getutmcontent);
+    formData.getutmterm = getutmterm.value ?? '';
+    console.log(getutmterm);
+    formData.getutmcampaign = getutmcampaign.value ?? '';
+    console.log(getutmcampaign);
+    formData.getutmreferrer = getutmreferrer.value ?? '';
+    console.log(getutmreferrer);
+    submitBtn.classList.add("d-none"), $("#formulario-contacto").addClass("animacion-form"), $("#formulario-contacto").hasClass("animacion-form") ? setTimeout(() => {
+        $("#formulario-contacto").addClass("d-none"), $("#procesando-datos").removeClass("d-none"), $("#procesando-datos").addClass("d-flex suavizar-opacidad")
+    }, 700) : ($("#formulario-contacto").removeClass("animacion-form"), $("#formulario-contacto").removeClass("d-none")), postData(formData, o, e)
+};
+async function postData(o, e, r) {
+    const a = await fetch(e, {
+        method: "POST",
+        body: JSON.stringify(o)
+    }),
+        t = await a.text();
+    console.log(t), "Completado" === t ? (formularioContacto.reset(), window.location.href = r) : console.log("Algo salio muy mal :(")
+}
+//# sourceMappingURL=scripts-formulario.js.map
