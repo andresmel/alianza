@@ -246,3 +246,8 @@ a{
   margin: auto;
 }
 
+@media only screen and (max-width: 1370px) {
+  body {
+   zoom: 70%;
+  }
+}
