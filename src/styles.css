@@ -8,6 +8,9 @@
 a{
   color:blue;
 }
+.blue{
+  color:blue;
+}
 .header{
  position: fixed;
  top:0;
@@ -254,7 +257,7 @@ box-shadow: 0 0 12px 1px gray;
   background: white;
   top:0%;
   left: 0%;
-  z-index: 5;
+  z-index: 9;
   display: flex;
   align-items: center;
   vertical-align: middle;
