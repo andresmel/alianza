@@ -1,29 +1,45 @@
 <app-loading *ngIf="validar"></app-loading>
-<app-header></app-header>
+
 <div class="dashboard">
 <div class="title-contenedor">
- <h2>Imagenes Disney</h2>
+ <h2>Dashboard Disney</h2>
+</div>
+<div class="brand-title">
+
+</div>
+
+ <div class="header-container-search">
+  <input  class="form-control search" placeholder=" buscar Caracter" (keyup)="search($event)">
 </div>
 
 <div class="contenedor-character">
-
-
-
  <ul>
   <li  *ngFor="let ficha of ListAllCharacters" >
-    <div class="character" >
+    <div class="character" (click)="caracter(ficha)" >
       <div class="cabecera-name-character">
         <h4>{{ficha.name}}</h4>
       </div>
       <img class="dash-img" src="{{ficha.imageUrl}}">
       <table class="table-info">
         <tr>
-          <td><strong>Fecha</strong></td>
+          <td><strong>Fecha:</strong></td>
           <td>{{ficha.createdAt}}</td>
         </tr>
         <tr>
-          <td><strong>Informacion</strong></td>
-          <td><a href="{{ficha.sourceUrl}}" target="_blank">Click Aqui</a></td>
+          <td><strong>Films:</strong></td>
+          <td>{{ficha.films}}</td>
+        </tr>
+        <tr>
+          <td><strong>Viedo Games:</strong></td>
+          <td>{{ficha.videoGames}}</td>
+        </tr>
+        <tr>
+          <td><strong>Short Films Games:</strong></td>
+          <td>{{ficha.shortFilms}}</td>
+        </tr>
+        <tr>
+          <td><strong>Enemies:</strong></td>
+          <td>{{ficha.enemies}}</td>
         </tr>
         <tr>
           <td></td>
@@ -37,3 +53,6 @@
 
 </div>
 </div>
+<app-header>
+
+</app-header>

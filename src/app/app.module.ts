@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ElementComponent } from './element/element.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoadingComponent } from './shared/loading/loading.component';
     LoginComponent,
     DashboardComponent,
     ElementComponent,
-    LoadingComponent
+    LoadingComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

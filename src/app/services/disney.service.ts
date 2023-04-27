@@ -13,4 +13,8 @@ export class DisneyService {
   GetAllCharacter(){
     return this._http.get(this.baseUrl+arr.endPoints.gettAll);
   }
+
+  GetOneCharacter(id:number){
+    return this._http.get(this.baseUrl+arr.endPoints.getOne+id);
+  }
 }

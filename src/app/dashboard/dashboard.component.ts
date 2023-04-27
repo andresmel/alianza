@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DisneyService } from '../services/disney.service';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 
 
@@ -12,13 +13,34 @@ import { HttpClient } from '@angular/common/http';
 export class DashboardComponent implements OnInit {
 
   ListAllCharacters:any=[];
+  ListArrayAll:any=[];
+  ListFilter:any=[];
   validar:Boolean=false;
-  constructor(private _http:HttpClient,private _ServiceDisney:DisneyService){
+  constructor(private _ServiceDisney:DisneyService,private _router:Router){
 
   }
 
   ngOnInit(): void {
    this.GetAllcharacter();
+  }
+
+  caracter(ficha:any){
+   this._router.navigate(["/Element",ficha._id])
+  }
+
+  search(x:any){
+    if(x.target.value==""){
+      this.ListAllCharacters=[...this.ListArrayAll];
+    }
+    else{
+    console.log(x.target.value);
+     this.ListFilter=[...this.ListArrayAll];
+     this.ListFilter=this.ListAllCharacters.filter((e:any)=>{
+      return e.name.includes(x.target.value);
+     })
+     this.ListAllCharacters=[...this.ListFilter];
+    }
+
   }
 
   GetAllcharacter(){
@@ -29,6 +51,7 @@ export class DashboardComponent implements OnInit {
         e.createdAt = e.createdAt.replaceAll("T", " ").split(".")[0];
         return e;
         })
+        this.ListArrayAll=[...this.ListAllCharacters];
        setTimeout(()=>{
         this.validar=false;
        },2000);
@@ -36,6 +59,7 @@ export class DashboardComponent implements OnInit {
        console.log(this.ListAllCharacters);
     },(error)=>{
       console.log(error);
+      this.validar=false;
     })
 
   }
