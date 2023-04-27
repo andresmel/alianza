@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notfound',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls:[]
 })
 export class NotfoundComponent {
+  constructor(private _router:Router){
+
+  }
+
+  goBack(){
+    this._router.navigate(["/Login"]);
+  }
 
 }

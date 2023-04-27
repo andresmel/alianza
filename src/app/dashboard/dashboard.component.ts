@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   ListArrayAll:any=[];
   ListFilter:any=[];
   validar:Boolean=false;
+  validarPage:Boolean=false;
   constructor(private _ServiceDisney:DisneyService,private _router:Router){
 
   }
@@ -53,11 +54,12 @@ export class DashboardComponent implements OnInit {
         this.ListArrayAll=[...this.ListAllCharacters];
        setTimeout(()=>{
         this.validar=false;
-       },2000);
+       },1500);
 
        console.log(this.ListAllCharacters);
     },(error)=>{
       console.log(error);
+      this.validarPage=true;
       this.validar=false;
     })
 

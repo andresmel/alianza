@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DisneyService } from '../services/disney.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 
 @Component({
@@ -11,10 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 export class ElementComponent implements OnInit {
   listOneCharacter:any;
   id:number=0;
-  constructor(private _actRouter:ActivatedRoute,private  _serviceDisney:DisneyService){}
+  constructor(private _actRouter:ActivatedRoute,private  _serviceDisney:DisneyService,private _router:Router){}
 
   ngOnInit(): void {
     this.getId();
+  }
+
+  goBack(){
+    this._router.navigate(["/Dashboard"]);
   }
 
   getId(){
@@ -25,9 +29,9 @@ export class ElementComponent implements OnInit {
   }
 
   getOneCharacter(id:number){
-     this._serviceDisney.GetOneCharacter(id).subscribe((data)=>{
-       this.listOneCharacter=data;
-       console.log(data);
+     this._serviceDisney.GetOneCharacter(id).subscribe((data:any)=>{
+       this.listOneCharacter=data["data"];
+       console.log(this.listOneCharacter);
      },(error)=>{
       console.log(error);
      })
