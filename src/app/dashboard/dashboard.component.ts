@@ -40,7 +40,6 @@ export class DashboardComponent implements OnInit {
      })
      this.ListAllCharacters=[...this.ListFilter];
     }
-
   }
 
   GetAllcharacter(){
